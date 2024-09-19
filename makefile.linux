@@ -1,0 +1,26 @@
+#
+# Script to build boggle_solver from the source code on Linux.
+#
+# * Run "make -f makefile.linux" from the command line to build.
+#
+# * Assumes G++ is installed and configured to be able to run
+#   from a shell prompt.
+#
+
+%.o : %.cpp; \
+    g++ -c -std=c++11 -o $@ $<
+
+#%.o : %.c; \
+#    g++ -c -o $@ $<
+
+all: boggle_solver
+
+boggle_solver:  boggle_solver.o ; \
+    g++ -o $@ boggle_solver.o
+
+boggle_solver.o:  boggle_solver.cpp
+
+clean: ; \
+    rm *.o ; \
+    rm boggle_solver ; \
+    rm *.bak
